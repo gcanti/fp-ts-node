@@ -1,0 +1,65 @@
+{
+  "name": "fp-ts-node",
+  "version": "0.0.1",
+  "description": "fp-ts bindings for node.js",
+  "files": [
+    "lib",
+    "es6"
+  ],
+  "main": "dist/lib/index.js",
+  "module": "dist/es6/index.js",
+  "typings": "dist/lib/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "lint": "tslint -p .",
+    "jest": "jest",
+    "prettier": "prettier --list-different \"./{src,test}/**/*.ts\"",
+    "pretest": "npm run lint && npm run prettier && npm run dtslint",
+    "test": "npm run jest",
+    "posttest": "npm run docs",
+    "clean": "rimraf dist/lib/* dist/es6/*",
+    "prebuild": "npm run clean",
+    "build": "tsc -p ./tsconfig.build-lib.json && tsc -p ./tsconfig.build-es6.json",
+    "postbuild": "import-path-rewrite && prettier --write \"./dist/{lib,es6}/**/*.ts\"",
+    "prepublish": "npm run build",
+    "dtslint": "dtslint dtslint",
+    "mocha": "mocha -r ts-node/register test/*.ts",
+    "docs": "docs-ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gcanti/fp-ts-node.git"
+  },
+  "author": "Giulio Canti <giulio.canti@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gcanti/fp-ts-node/issues"
+  },
+  "homepage": "https://github.com/gcanti/fp-ts-node",
+  "peerDependencies": {
+    "fp-ts": "^2.7.1",
+    "fs-extra": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.1",
+    "@types/jest": "^22.2.2",
+    "@types/node": "^14.0.26",
+    "docs-ts": "^0.5.1",
+    "dtslint": "github:gcanti/dtslint",
+    "fp-ts": "^2.7.1",
+    "fs-extra": "^9.0.1",
+    "import-path-rewrite": "github:gcanti/import-path-rewrite",
+    "jest": "^24.8.0",
+    "mocha": "^5.2.0",
+    "prettier": "^2.0.2",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-immutable": "^6.0.1",
+    "typescript": "^3.9.7"
+  },
+  "tags": [],
+  "keywords": []
+}
